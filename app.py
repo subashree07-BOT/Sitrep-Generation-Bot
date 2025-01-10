@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 class SecurityAdvisor:
     def __init__(self):
-        self.openai_api_key = os.getenv("OPENAI_API_KEY")
+        self.openai_api_key = st.secrets["OPENAI_API_KEY"]
         if not self.openai_api_key:
             raise ValueError("OpenAI API key not found in environment variables. Please set OPENAI_API_KEY.")
         
