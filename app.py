@@ -1,6 +1,6 @@
 import streamlit as st
-from langchain.callbacks import get_openai_callback
-from langchain.chat_models import ChatOpenAI
+from langchain_community.callbacks.manager import get_openai_callback
+from langchain_openai import ChatOpenAI
 from langchain.chains import LLMChain
 from langchain.prompts.chat import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 import openai
@@ -8,6 +8,7 @@ from typing import Dict, Optional
 import json
 import logging
 import os
+import re  
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
