@@ -8,6 +8,7 @@ from typing import Dict, Optional
 import json
 import logging
 import os
+import re
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
