@@ -89,7 +89,7 @@ def main():
     
     customer_query = st.text_area(
         "Customer Query",
-        placeholder="Enter the customer's question here...",
+        placeholder="Example:\nRyan O'Neill, Mon, 06 Jan 2025 20:35:46 GMT\nWhat does this alert mean?",
         height=100
     )
     
