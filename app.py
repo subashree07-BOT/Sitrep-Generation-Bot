@@ -8,7 +8,6 @@ from typing import Dict, Optional
 import json
 import logging
 import os
-import re
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -25,6 +24,8 @@ class SecurityAdvisor:
             temperature=0.1,
             openai_api_key=self.openai_api_key
         )
+
+    
     def process_query(self, query: str):
         """Extract name and clean query from timestamp format"""
         pattern = r'^([^,]+),\s*(?:[^,]+,\s*\d+\s+\w+\s+\d+\s+[\d:]+\s+\w+)\s*\n(.+)$'
@@ -34,6 +35,7 @@ class SecurityAdvisor:
             name, content = match.groups()
             return name.strip(), content.strip()
         return None, query.strip()
+
     def generate_response(self, sitrep: str, query: str) -> Dict:
         """
         Generates responses for security-related queries based on sitrep analysis
@@ -43,25 +45,26 @@ class SecurityAdvisor:
             greeting = f"Hey {name}" if name else "Hey"
             
             if not cleaned_query or cleaned_query.lower().startswith(('thank', 'ok', 'got it')):
-                return f"{greeting}, thank you for your message. - Gradient Cyber Team!"
+                return {
+                    "response": f"{greeting}, thank you for your message. - Gradient Cyber Team!"
+                }
 
             response_prompt = ChatPromptTemplate.from_messages([
-            SystemMessagePromptTemplate.from_template("""
-            You are an experienced cyber security analyst handling the role from a Security operations center perspective. 
-            When I provide a message, it contains the summary of a "sitrep" which is a situational report of a particular 
-            security incident  or event. The goal is to first analyze this sitrep. It will be followed always with a 
-            "query" from a user. Your goal will be to understand the sitrep and then focus on answering the query based 
-            on your role as an experience cyber security analyst. The concept is to ensure that the repose is brief as it 
-            primarily is provided as part of a web interface or email.
-            Always start with "{greeting}" and end with "We hope this answers your question. Thank you! Gradient Cyber Team!""
-            """),
-            HumanMessagePromptTemplate.from_template("""
-            Sitrep: {sitrep}
-            Query: {query}
-            """)
-        ])
+                SystemMessagePromptTemplate.from_template(f"""
+                You are an experienced cyber security analyst handling the role from a Security operations center perspective. 
+                When I provide a message, it contains the summary of a "sitrep" which is a situational report of a particular 
+                security incident  or event. The goal is to first analyze this sitrep. It will be followed always with a 
+                "query" from a user. Your goal will be to understand the sitrep and then focus on answering the query based 
+                on your role as an experience cyber security analyst. The concept is to ensure that the repose is brief as it 
+                primarily is provided as part of a web interface or email.
+                Always start with "{greeting}" and end with "We hope this answers your question. Thank you! Gradient Cyber Team!"
+                """),
+                HumanMessagePromptTemplate.from_template("""
+                Sitrep: {sitrep}
+                Query: {query}
+                """)
+            ])
 
-        
             chain = LLMChain(llm=self.llm, prompt=response_prompt)
             response = chain.run(sitrep=sitrep, query=cleaned_query)
             
@@ -73,7 +76,6 @@ class SecurityAdvisor:
             return {
                 "response": "Error generating response. Please try again."
             }
-
 def main():
     st.set_page_config(page_title="Security Advisor", layout="wide")
     
@@ -89,7 +91,7 @@ def main():
     
     customer_query = st.text_area(
         "Customer Query",
-        placeholder="Example:\nRyan O'Neill, Mon, 06 Jan 2025 20:35:46 GMT\nWhat does this alert mean?",
+        placeholder="Enter the customer's question here...",
         height=100
     )
     
