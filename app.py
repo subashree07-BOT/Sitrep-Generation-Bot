@@ -44,7 +44,7 @@ class SecurityAdvisor:
             if not cleaned_query or cleaned_query.lower().startswith(('thank', 'ok', 'got it')):
                 return f"{greeting}, thank you for your message. - Gradient Cyber Team!"
 
-        response_prompt = ChatPromptTemplate.from_messages([
+            response_prompt = ChatPromptTemplate.from_messages([
             SystemMessagePromptTemplate.from_template("""
             You are an experienced cyber security analyst handling the role from a Security operations center perspective. 
             When I provide a message, it contains the summary of a "sitrep" which is a situational report of a particular 
