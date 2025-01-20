@@ -24,11 +24,26 @@ class SecurityAdvisor:
             temperature=0.1,
             openai_api_key=self.openai_api_key
         )
-
+    def process_query(self, query: str):
+        """Extract name and clean query from timestamp format"""
+        pattern = r'^([^,]+),\s*(?:[^,]+,\s*\d+\s+\w+\s+\d+\s+[\d:]+\s+\w+)\s*\n(.+)$'
+        match = re.match(pattern, query.strip(), re.DOTALL)
+        
+        if match:
+            name, content = match.groups()
+            return name.strip(), content.strip()
+        return None, query.strip()
     def generate_response(self, sitrep: str, query: str) -> Dict:
         """
         Generates responses for security-related queries based on sitrep analysis
         """
+        try:
+            name, cleaned_query = self.process_query(query)
+            greeting = f"Hey {name}" if name else "Hey"
+            
+            if not cleaned_query or cleaned_query.lower().startswith(('thank', 'ok', 'got it')):
+                return f"{greeting}, thank you for your message. - Gradient Cyber Team!"
+
         response_prompt = ChatPromptTemplate.from_messages([
             SystemMessagePromptTemplate.from_template("""
             You are an experienced cyber security analyst handling the role from a Security operations center perspective. 
@@ -37,6 +52,7 @@ class SecurityAdvisor:
             "query" from a user. Your goal will be to understand the sitrep and then focus on answering the query based 
             on your role as an experience cyber security analyst. The concept is to ensure that the repose is brief as it 
             primarily is provided as part of a web interface or email.
+            Always start with "{greeting}" and end with "We hope this answers your question. Thank you! Gradient Cyber Team!""
             """),
             HumanMessagePromptTemplate.from_template("""
             Sitrep: {sitrep}
@@ -44,9 +60,9 @@ class SecurityAdvisor:
             """)
         ])
 
-        try:
+        
             chain = LLMChain(llm=self.llm, prompt=response_prompt)
-            response = chain.run(sitrep=sitrep, query=query)
+            response = chain.run(sitrep=sitrep, query=cleaned_query)
             
             return {
                 "response": response.strip()
