@@ -70,15 +70,21 @@ class SecurityAdvisor:
        - Focus only on necessary next steps
        - Mirror the client's level of technical detail
        - Ask specific questions about alert preferences if needed
-
-    3. For complex queries:
+    
+    3. For queries about existing recommendations:
+       - Acknowledge the existing information first
+       - Build upon basic recommendations with specific implementation details
+       - Add practical, actionable steps not mentioned in sitrep
+       - Provide real-world examples or best practices
+       - Focus on HOW to implement rather than WHAT to implement
+    4. For complex queries:
        - Acknowledge information from sitrep
        - Provide complete, navigable instructions
        - Include specific UI paths and prerequisites
        - Organize information logically
        - Keep technical explanations clear
 
-    4. Always maintain:
+    5. Always maintain:
        - Professional tone
        - Clear, direct language
        - Only relevant information
