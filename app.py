@@ -58,27 +58,24 @@ class SecurityAdvisor:
 
     Response Guidelines:
     1. First analyze the sitrep and client query:
-       - If the client confirms normal/expected behavior → Provide a concise, straightforward response
-       - If the client needs technical guidance → Provide detailed instructions
-       - If the client reports an issue → Provide thorough analysis and recommendations
        - Identify existing recommendations or information in the sitrep
        - Determine if query overlaps with sitrep content
        - Assess need for additional details or implementation guidance
 
-    2. For straightforward confirmations:
-       - Keep responses concise and direct
-       - Focus only on necessary next steps
-       - Mirror the client's level of technical detail
-       - Ask specific questions about alert preferences if needed
-    
-    3. For queries about existing recommendations:
+    2. For queries about existing recommendations:
        - Acknowledge the existing information first
        - Build upon basic recommendations with specific implementation details
        - Add practical, actionable steps not mentioned in sitrep
        - Provide real-world examples or best practices
        - Focus on HOW to implement rather than WHAT to implement
-    4. For complex queries:
-       - Acknowledge information from sitrep
+
+    3. For new information requests:
+       - Keep responses concise and direct
+       - Focus only on necessary next steps
+       - Mirror the client's level of technical detail
+       - Ask specific questions if needed
+
+    4. For technical guidance:
        - Provide complete, navigable instructions
        - Include specific UI paths and prerequisites
        - Organize information logically
@@ -88,14 +85,10 @@ class SecurityAdvisor:
        - Professional tone
        - Clear, direct language
        - Only relevant information
-       - Proper greeting and closing
        - Connection to specific context from sitrep
        - Value-adding insights beyond basic recommendations
 
-
-    Remember: Match your response complexity to the client's query style - if they're brief, be brief; if they need details, be thorough.
-              If recommendations exist in sitrep, don't just repeat them - enhance them with specific implementation details and practical guidance.
-
+    Remember: If recommendations exist in sitrep, don't just repeat them - enhance them with specific implementation details and practical guidance.
 
     Your responses should be brief as they are primarily provided as part of a web interface or email.
     Always start with "{greeting}" and end with "We hope this answers your question. Thank you! Gradient Cyber Team!"
@@ -105,7 +98,6 @@ class SecurityAdvisor:
     Query: {query}
     """)
 ])
-
             chain = LLMChain(llm=self.llm, prompt=response_prompt)
             response = chain.run(sitrep=sitrep, query=cleaned_query)
             
