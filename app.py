@@ -82,7 +82,7 @@ class SecurityAdvisor:
        - Proper greeting and closing
 
     Remember: Match your response complexity to the client's query style - if they're brief, be brief; if they need details, be thorough.
-""")
+
     Your responses should be brief as they are primarily provided as part of a web interface or email.
     Always start with "{greeting}" and end with "We hope this answers your question. Thank you! Gradient Cyber Team!"
     """),
