@@ -234,56 +234,11 @@ class SecurityAdvisor:
             # Ensure response starts with greeting
             if not response.startswith(greeting):
                 response = f"{greeting}\n\n{response}"
-                def generate_response(self, sitrep: str, query: str) -> Dict:
-        try:
-            name, cleaned_query = self.process_query(query)
-            greeting = f"Hey {name}," if name else "Hey,"
-            
-            # Handle empty or simple acknowledgment queries
-            if not cleaned_query or cleaned_query.lower().endswith(('thank', 'ok', 'got it')):
-                return {
-                    "response": f"{greeting}\n\nMessage received. Thank you! Gradient Cyber Team!"
-                }
-
-            response_prompt = ChatPromptTemplate.from_messages([
-                SystemMessagePromptTemplate.from_template(f"""
-                You are an experienced cyber security analyst handling the role from a Security Operations Center perspective. 
-                When I provide a message, it contains the summary of a "sitrep" which is a situational report of a particular 
-                security incident or event.
-
-                CRITICAL RESPONSE FORMAT:
-                1. Start EXACTLY with the greeting "{greeting}" - no other words before it
-                2. Add a blank line after the greeting
-                3. Then continue with the response content
-                4. DO NOT start with phrases like "I appreciate" or "I acknowledge"
-                5. DO NOT add any text before the greeting
-
-                // ... rest of existing template ... 
-                """),
-                HumanMessagePromptTemplate.from_template("""
-                Sitrep: {sitrep}
-                Query: {query}
-                """)
-            ])
-            chain = LLMChain(llm=self.llm, prompt=response_prompt)
-            response = chain.run(sitrep=sitrep, query=cleaned_query)
-            
-            # Force the greeting if it's not at the start
-            if not response.startswith(greeting):
-                response = f"{greeting}\n\n{response.lstrip()}"
-            
-            # Remove any common starting phrases after the greeting
+             # Remove any common starting phrases after the greeting
             response = response.replace(f"{greeting}\n\nI appreciate", f"{greeting}\n\n")
             response = response.replace(f"{greeting}\n\nI acknowledge", f"{greeting}\n\n")
             
-            return {
-                "response": response.strip()
-            }
-        except Exception as e:
-            logger.error(f"Error generating response: {str(e)}")
-            return {
-                "response": "Error generating response. Please try again."
-            }
+
             return {
                 "response": response.strip()
             }
