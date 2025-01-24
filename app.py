@@ -203,6 +203,10 @@ class SecurityAdvisor:
        For Client Updates/Status Reports:
        - End with "Thank you for the update. Gradient Cyber Team!"
 
+    - ALWAYS start with "Hey [Name]," on its own line
+       - NEVER start with "Thank you"
+       - Add a blank line after greeting
+
     Remember: 
     - Match response complexity to client's query style - if they're brief, be brief; if they need details, be thorough
     - Focus responses on our monitoring capabilities, not client platform configurations
