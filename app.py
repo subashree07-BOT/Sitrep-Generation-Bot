@@ -219,7 +219,7 @@ class SecurityAdvisor:
             response = chain.run(sitrep=sitrep, query=cleaned_query)
             
             
-                response = f"{greeting}\n\n{response}"
+            response = f"{greeting}\n\n{response}"
             return {
                 "response": response.strip()
             }
