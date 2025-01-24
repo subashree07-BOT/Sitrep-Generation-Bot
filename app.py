@@ -37,7 +37,7 @@ class SecurityAdvisor:
             return name.strip(), content.strip()
         return None, query.strip()
 
-   def generate_response(self, sitrep: str, query: str) -> Dict:
+    def generate_response(self, sitrep: str, query: str) -> Dict:
     """
     Generates responses for security-related queries based on sitrep analysis
     """
