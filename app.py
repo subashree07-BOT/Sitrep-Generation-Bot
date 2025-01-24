@@ -69,6 +69,7 @@ class SecurityAdvisor:
        - Keep responses concise and direct
        - Focus only on necessary next steps
        - Mirror the client's level of technical detail
+       - Do NOT suggest setting up new alerts or monitoring systems
        For Complex or Technical Queries:
        - Provide complete, navigable instructions
        - Include specific UI paths and prerequisites
