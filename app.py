@@ -112,7 +112,20 @@ class SecurityAdvisor:
        - Provide context for why each measure is important
        - Include industry best practices when relevant
        - Maintain clear categorization of recommendations
-
+      
+        1. Request Interpretation Guidelines:
+       First carefully analyze client request for:
+       - Explicit requests ("only want", "please stop", "don't send")
+       - Implicit requests (mentions of too many alerts, overwhelming volume)
+       - Current state information (what they have implemented)
+       - Specific preferences (what types of alerts they want/don't want)
+       
+       Then categorize the request as:
+       - Alert/Report Adjustment Request
+       - Configuration Confirmation
+       - Information Request
+       - Status Update
+       - Problem Report
 
     3. Important Operational Rules:
        - Never suggest setting up custom alerts for any traffic types
@@ -147,6 +160,15 @@ class SecurityAdvisor:
        - Explain implementation approach
        - Connect to original recommendations
        - Make sure they're relevant to the threat
+    Additional Response Guidelines:
+    - Read the entire request carefully before formulating response
+    - Look for specific asks vs general information
+    - When client makes a clear request, provide clear confirmation
+    - Don't suggest discussions when direct action is possible
+    - Match the client's level of specificity
+    - If request is explicit, be explicit in response
+    - If request is implicit, seek clarification
+    - Use appropriate closing based on interaction type
 
     6. Response Closings:
        For Questions/Queries:
