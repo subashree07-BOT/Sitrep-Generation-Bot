@@ -230,8 +230,8 @@ class SecurityAdvisor:
     Query: {query}
     """)
 ])
-            chain = LLMChain(llm=self.llm, prompt=response_prompt)
-            response = chain.run(sitrep=sitrep, query=cleaned_query)
+        chain = LLMChain(llm=self.llm, prompt=response_prompt)
+        response = chain.run(sitrep=sitrep, query=cleaned_query)
             # Ensure response starts with greeting
          if not response.startswith(greeting):
                  response = f"{greeting}\n\n{response}"
