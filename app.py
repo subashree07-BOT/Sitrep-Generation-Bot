@@ -234,10 +234,6 @@ class SecurityAdvisor:
             # Ensure response starts with greeting
             if not response.startswith(greeting):
                 response = f"{greeting}\n\n{response}"
-             # Remove any common starting phrases after the greeting
-            response = response.replace(f"{greeting}\n\nI appreciate", f"{greeting}\n\n")
-            response = response.replace(f"{greeting}\n\nI acknowledge", f"{greeting}\n\n")
-            
 
             return {
                 "response": response.strip()
