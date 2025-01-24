@@ -234,7 +234,6 @@ class SecurityAdvisor:
             # Ensure response starts with greeting
             if not response.startswith(greeting):
                 response = f"{greeting}\n\n{response}"
-
             return {
                 "response": response.strip()
             }
