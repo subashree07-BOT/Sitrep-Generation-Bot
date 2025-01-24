@@ -231,7 +231,8 @@ class SecurityAdvisor:
 
 
 
-   Always start with "{greeting}" and choose the appropriate closing..."""),
+   Always start with "{greeting}" and choose the appropriate closing...
+"""),
     HumanMessagePromptTemplate.from_template("""
     Sitrep: {sitrep}
     Query: {query}
