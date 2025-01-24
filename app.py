@@ -37,7 +37,7 @@ class SecurityAdvisor:
             return name.strip(), content.strip()
         return None, query.strip()
 
-    def generate_response(self, sitrep: str, query: str) -> Dict:
+  def generate_response(self, sitrep: str, query: str) -> Dict:
     """
     Generates responses for security-related queries based on sitrep analysis
     """
@@ -51,15 +51,7 @@ class SecurityAdvisor:
                 "response": f"{greeting}\n\nMessage received. Thank you! Gradient Cyber Team!"
             }
 
-        # For regular responses, force the structure
-        response = self.get_llm_response(sitrep, cleaned_query, greeting)
-        
-        # Ensure response starts with greeting
-        if not response.startswith(greeting):
-            response = f"{greeting}\n\n{response}"
-
-        return {"response": response}
-            response_prompt = ChatPromptTemplate.from_messages([
+        response_prompt = ChatPromptTemplate.from_messages([
     SystemMessagePromptTemplate.from_template(f"""
     You are an experienced cyber security analyst handling the role from a Security Operations Center perspective. 
     When I provide a message, it contains the summary of a "sitrep" which is a situational report of a particular 
@@ -240,7 +232,9 @@ class SecurityAdvisor:
 ])
             chain = LLMChain(llm=self.llm, prompt=response_prompt)
             response = chain.run(sitrep=sitrep, query=cleaned_query)
-            
+            # Ensure response starts with greeting
+            if not response.startswith(greeting):
+                 response = f"{greeting}\n\n{response}"
             return {
                 "response": response.strip()
             }
