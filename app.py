@@ -45,7 +45,7 @@ class SecurityAdvisor:
             name, cleaned_query = self.process_query(query)
             greeting = f"Hey {name}" if name else "Hey"
             
-            if not cleaned_query or cleaned_query.lower().startswith(('thank', 'ok', 'got it')):
+            if not cleaned_query or cleaned_query.lower().endswith(('thank', 'ok', 'got it')):
                 return {
                     "response": f"{greeting}, thank you for your message. - Gradient Cyber Team!"
                 }
