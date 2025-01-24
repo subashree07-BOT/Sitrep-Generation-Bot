@@ -38,18 +38,27 @@ class SecurityAdvisor:
         return None, query.strip()
 
     def generate_response(self, sitrep: str, query: str) -> Dict:
-        """
-        Generates responses for security-related queries based on sitrep analysis
-        """
-        try:
-            name, cleaned_query = self.process_query(query)
-            greeting = f"Hey {name}" if name else "Hey"
-            
-            if not cleaned_query or cleaned_query.lower().endswith(('thank', 'ok', 'got it')):
-                return {
-                    "response": f"{greeting}, thank you for your message. - Gradient Cyber Team!"
-                }
+    """
+    Generates responses for security-related queries based on sitrep analysis
+    """
+    try:
+        name, cleaned_query = self.process_query(query)
+        greeting = f"Hey {name}," if name else "Hey,"
+        
+        # Handle empty or simple acknowledgment queries
+        if not cleaned_query or cleaned_query.lower().endswith(('thank', 'ok', 'got it')):
+            return {
+                "response": f"{greeting}\n\nMessage received. Thank you! Gradient Cyber Team!"
+            }
 
+        # For regular responses, force the structure
+        response = self.get_llm_response(sitrep, cleaned_query, greeting)
+        
+        # Ensure response starts with greeting
+        if not response.startswith(greeting):
+            response = f"{greeting}\n\n{response}"
+
+        return {"response": response}
             response_prompt = ChatPromptTemplate.from_messages([
     SystemMessagePromptTemplate.from_template(f"""
     You are an experienced cyber security analyst handling the role from a Security Operations Center perspective. 
