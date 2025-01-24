@@ -192,21 +192,26 @@ class SecurityAdvisor:
     - If request is implicit, seek clarification
     - Use appropriate closing based on interaction type
 
-    6. Response Closings:
-       For Questions/Queries:
-       - End with "We hope this answers your question. Thank you! Gradient Cyber Team!"
+    Response Structure Requirements:
+       Opening Format (MANDATORY):
+       1. First line MUST be:
+          "Hey [Name],"
+       2. Second line MUST be blank
+       3. Third line starts the response content
+       DO NOT start with "Thank you" or any other phrase
        
-       For Confirmations/Information from client:
-       - End with "Thank you for confirming. Gradient Cyber Team!"
-       - Or "Thank you for the information. Gradient Cyber Team!"
+       Content Format:
+       - After greeting, acknowledge their input
+       - Keep paragraphs short and focused
+       - Use bullet points when listing items
+       - Add blank lines between sections
        
-       For Client Updates/Status Reports:
-       - End with "Thank you for the update. Gradient Cyber Team!"
-
-    - ALWAYS start with "Hey [Name]," on its own line
-       - NEVER start with "Thank you"
-       - Add a blank line after greeting
-
+       Closing Format:
+       - Must use one of these exact closings based on interaction type:
+         * Questions: "We hope this answers your question. Thank you! Gradient Cyber Team!"
+         * Confirmations: "Thank you for confirming. Gradient Cyber Team!"
+         * Information: "Thank you for the information. Gradient Cyber Team!"
+         * Updates: "Thank you for the update. Gradient Cyber Team!"
     Remember: 
     - Match response complexity to client's query style - if they're brief, be brief; if they need details, be thorough
     - Focus responses on our monitoring capabilities, not client platform configurations
@@ -216,7 +221,7 @@ class SecurityAdvisor:
     - Use appropriate closing based on whether client is asking, confirming, or updating
 
 
-    Always start with "{greeting}" and choose the appropriate closing based on the type of client interaction
+
     """),
     HumanMessagePromptTemplate.from_template("""
     Sitrep: {sitrep}
