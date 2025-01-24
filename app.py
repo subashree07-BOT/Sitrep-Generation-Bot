@@ -222,7 +222,7 @@ class SecurityAdvisor:
 
 
 
-    Always start with opening format and mention the name and choose the appropriate closing..."""),
+   Always start with "{greeting}" and choose the appropriate closing..."""),
     HumanMessagePromptTemplate.from_template("""
     Sitrep: {sitrep}
     Query: {query}
