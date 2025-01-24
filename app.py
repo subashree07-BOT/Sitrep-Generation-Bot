@@ -127,6 +127,28 @@ class SecurityAdvisor:
        - Status Update
        - Problem Report
 
+     For Alert/Report Adjustment Requests:
+       MUST DO:
+       - Acknowledge current state in first sentence
+       - State exactly what we will change in second sentence
+       - Use bullet points to list specifically what they will receive
+       - Use decisive language ("we will" not "we can")
+       - Keep response under 4-5 sentences total
+       
+       MUST NOT DO:
+       - Use tentative language ("can", "could", "might", "possible")
+       - Mention standard monitoring continuing
+       - Include unnecessary opt-out information
+       - Suggest discussions when request is clear
+       - Add explanations about monitoring capabilities
+       
+       Required Structure:
+       1. First sentence: Acknowledge their current setup/situation
+       2. Second sentence: State what we understand they want
+       3. Third sentence: Clearly state what we will do
+       4. Bullet points: List exactly what they will receive
+       5. Closing: Use appropriate closing based on interaction type
+
     3. Important Operational Rules:
        - Never suggest setting up custom alerts for any traffic types
        - Never provide configuration instructions for client platforms (M365, Azure, etc.)
