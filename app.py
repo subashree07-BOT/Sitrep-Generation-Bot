@@ -38,9 +38,9 @@ class SecurityAdvisor:
         return None, query.strip()
 
     def generate_response(self, sitrep: str, query: str) -> Dict:
-    """
-    Generates responses for security-related queries based on sitrep analysis
-    """
+     """
+      Generates responses for security-related queries based on sitrep analysis
+     """
     try:
         name, cleaned_query = self.process_query(query)
         greeting = f"Hey {name}," if name else "Hey,"
