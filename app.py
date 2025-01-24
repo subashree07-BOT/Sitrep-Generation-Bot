@@ -46,7 +46,7 @@ class SecurityAdvisor:
             greeting = f"Hey {name}," if name else "Hey,"
             
             # Handle empty or simple acknowledgment queries
-            if not cleaned_query or cleaned_query.lower().endswith(('thank', 'ok', 'got it')):
+            if not cleaned_query or cleaned_query.lower().startswith(('thank', 'ok', 'got it')):
                 return {
                     "response": f"{greeting}\n\nMessage received. Thank you! Gradient Cyber Team!"
                 }
