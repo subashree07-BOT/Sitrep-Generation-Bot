@@ -193,20 +193,7 @@ class SecurityAdvisor:
                 - If request is implicit, seek clarification
                 - Use appropriate closing based on interaction type
 
-                Response Structure Requirements:
-                   Opening Format (MANDATORY):
-                   1. First line MUST be:
-                      "Hey [Name],"
-                   2. Second line MUST be blank
-                   3. Third line starts the response content
-                   DO NOT start with "Thank you" or any other phrase
-                   
-                   Content Format:
-                   - After greeting, acknowledge their input
-                   - Keep paragraphs short and focused
-                   - Use bullet points when listing items
-                   - Add blank lines between sections
-                   
+               
                    Closing Format:
                    - Must use one of these exact closings based on interaction type:
                      * Questions: "We hope this answers your question. Thank you! Gradient Cyber Team!"
