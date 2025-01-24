@@ -219,6 +219,10 @@ class SecurityAdvisor:
             response = chain.run(sitrep=sitrep, query=cleaned_query)
             
             
+            # Remove any potential greeting patterns from the response
+            response = re.sub(r'^Hey[^,]*,\s*', '', response.strip())
+            
+            # Add our controlled greeting
             response = f"{greeting}\n\n{response}"
             return {
                 "response": response.strip()
