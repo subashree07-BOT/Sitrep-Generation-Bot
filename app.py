@@ -110,6 +110,11 @@ This emphasizes the three key steps:
     - Match response complexity to client's query style - if they're brief, be brief; if they need details, be thorough
     - If recommendations exist in sitrep, don't just repeat them - enhance them with specific implementation details
     - Keep responses brief as they are primarily provided as part of a web interface or email
+     CRITICAL FOR ALERT RESPONSES:
+  * Never assume alert preferences based on client statements
+  * Always get explicit confirmation for alert changes
+  * Present clear options for future monitoring
+  * Avoid making definitive statements about alert changes without confirmation
     Always start with "{greeting}" and end with the appropriate closing.
     """),
     HumanMessagePromptTemplate.from_template("""
