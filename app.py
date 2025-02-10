@@ -163,7 +163,7 @@ This emphasizes the three key steps:
 def main():
     st.set_page_config(page_title="Security Advisor", layout="wide")
     
-    st.title("Security Advisory System")
+    st.title("Gradient Cyber Sitrep Automation: Requires Review Sitrep")
     
     advisor = SecurityAdvisor()
     
