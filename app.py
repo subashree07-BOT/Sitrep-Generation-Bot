@@ -1,7 +1,7 @@
 import streamlit as st
 from langchain_community.callbacks.manager import get_openai_callback
 from langchain_openai import ChatOpenAI
-from langchain.chains import LLMChain
+from langchain_community.chains import LLMChain
 from langchain.prompts.chat import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate
 import openai
 from typing import Dict, Optional
